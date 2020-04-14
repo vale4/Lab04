@@ -65,12 +65,40 @@ public class FXMLController {
 
     @FXML
     void doCercaCorsi(ActionEvent event) {
+    	try {
+    		
+    	int matricola=Integer.parseInt(txtMatricola.getText());
+    	Studente studente=model.getStudenteByMatricola(matricola);
+    	
+    	if(studente==null) {
+    		txtRisultato.appendText("Matricola inesistente\n");
+    		return;
+    	}
+    	
+    	List<Corso>corsi=model.getCorsiByStudente(studente);
+    	StringBuilder sb=new StringBuilder();
+    	
+    	for(Corso corso : corsi) {
+    		sb.append(String.format("%-10s", corso.getCodins()));
+    		sb.append(String.format("%-10s", corso.getCrediti()));
+    		sb.append(String.format("%-50s", corso.getNome()));
+    		sb.append(String.format("%-10s", corso.getPd()));
+    		sb.append("\n");
+    		
+    		txtRisultato.appendText(sb.toString());
+    	}
+    	
+    	}catch(NumberFormatException e ) {
+    		txtRisultato.appendText("Inserire la matricola in formato numerico");
+    	}catch(RuntimeException e) {
+    		txtRisultato.appendText("Errore di connessione ad database");
+    	}
 
     }
 
     @FXML
     void doCercaIscrittiCorso(ActionEvent event) {
-    	//try {
+    	try {
     	Corso corso=boxCorsi.getValue();
     	if(corso==null) {
     		txtRisultato.setText("Selezionare un corso\n");
@@ -89,9 +117,9 @@ public class FXMLController {
     	
     	txtRisultato.appendText(sb.toString());
     	
-    	/*}catch(RuntimeException e) {
+    	}catch(RuntimeException e) {
     		txtRisultato.setText("Errore di connessione al database\n");
-    	}*/
+    	}
 
     }
 
