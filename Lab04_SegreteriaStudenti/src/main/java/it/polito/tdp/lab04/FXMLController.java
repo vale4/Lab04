@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 
 import it.polito.tdp.lab04.model.Corso;
 import it.polito.tdp.lab04.model.Model;
+import it.polito.tdp.lab04.model.Studente;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -74,6 +75,24 @@ public class FXMLController {
 
     @FXML
     void doCompleta(ActionEvent event) {
+    	
+    	try {
+    		int matricola=Integer.parseInt(txtMatricola.getText());
+    		Studente studente=model.getStudenteByMatricola(matricola);
+    		
+    		if(studente==null) {
+    			txtRisultato.appendText("Studente inesistente\n");
+    			return;
+    		}
+    		txtNome.setText(studente.getNome());
+    		txtCognome.setText(studente.getCognome());
+    		
+    	}catch(NumberFormatException e) {
+    		txtRisultato.setText("Inserire una matricola di soli numeri\n");
+    	}catch(RuntimeException e){
+    		txtRisultato.setText("Errore di connessione al database");
+    	}
+    	
 
     }
 

@@ -56,7 +56,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </HBox.margin>
                   </TextField>
-                  <Button fx:id="btnCompleta" mnemonicParsing="false" onAction="#doCompleta" style="-fx-background-color: green;">
+                  <Button fx:id="btnCompleta" mnemonicParsing="false" onAction="#doCompleta" style="-fx-background-color: green;" text="..." textFill="WHITE">
                      <HBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </HBox.margin>
