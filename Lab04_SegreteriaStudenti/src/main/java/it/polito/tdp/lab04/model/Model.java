@@ -24,5 +24,9 @@ public class Model {
 		return studenteDAO.getStudenteByMatricola(matricola);
 	}
 	
+	public List<Studente>getStudentiIscrittiAlCorso(Corso corso){
+		return corsoDAO.getStudentiIscrittiAlCorso(corso);
+	}
+	
 
 }

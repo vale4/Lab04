@@ -5,19 +5,19 @@ public class Studente {
 	private int matricola;
 	private String cognome;
 	private String nome;
-	private String CDS;
+	private String cds;
 	/**
 	 * @param matricola
 	 * @param cognome
 	 * @param nome
-	 * @param cDS
+	 * @param cds
 	 */
-	public Studente(int matricola, String cognome, String nome, String cDS) {
+	public Studente(int matricola, String cognome, String nome, String cds) {
 		super();
 		this.matricola = matricola;
 		this.cognome = cognome;
 		this.nome = nome;
-		CDS = cDS;
+		this.cds = cds;
 	}
 	
 	public int getMatricola() {
@@ -44,15 +44,15 @@ public class Studente {
 		this.nome = nome;
 	}
 	
-	public String getCDS() {
-		return CDS;
+	public String getCds() {
+		return cds;
 	}
 	
-	public void setCDS(String cDS) {
-		CDS = cDS;
+	public void setCDS(String cds) {
+		this.cds = cds;
 	}
 
-	@Override
+	/*@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -72,7 +72,7 @@ public class Studente {
 		if (matricola != other.matricola)
 			return false;
 		return true;
-	}
+	}*/
 
 	@Override
 	public String toString() {

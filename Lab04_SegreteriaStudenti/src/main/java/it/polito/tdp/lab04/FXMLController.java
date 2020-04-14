@@ -70,6 +70,28 @@ public class FXMLController {
 
     @FXML
     void doCercaIscrittiCorso(ActionEvent event) {
+    	//try {
+    	Corso corso=boxCorsi.getValue();
+    	if(corso==null) {
+    		txtRisultato.setText("Selezionare un corso\n");
+    		return;
+    	}
+    	List<Studente>studenti=model.getStudentiIscrittiAlCorso(corso);
+    	StringBuilder sb=new StringBuilder();
+    	
+    	for(Studente studente: studenti) {
+    		sb.append(String.format("%-10s", studente.getMatricola()));
+    		sb.append(String.format("%-20s", studente.getCognome()));
+    		sb.append(String.format("%-20s", studente.getNome()));
+    		sb.append(String.format("%-10s", studente.getCds()));
+    		sb.append("\n");
+    	}
+    	
+    	txtRisultato.appendText(sb.toString());
+    	
+    	/*}catch(RuntimeException e) {
+    		txtRisultato.setText("Errore di connessione al database\n");
+    	}*/
 
     }
 
