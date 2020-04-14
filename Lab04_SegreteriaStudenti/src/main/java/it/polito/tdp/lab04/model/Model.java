@@ -24,12 +24,20 @@ public class Model {
 		return studenteDAO.getStudenteByMatricola(matricola);
 	}
 	
+	public boolean isStudenteIscrittoAlCorso(Studente studente, Corso corso) {
+		return studenteDAO.isStudenteIscrittoAlCorso(studente, corso);
+	}
+	
 	public List<Studente>getStudentiIscrittiAlCorso(Corso corso){
 		return corsoDAO.getStudentiIscrittiAlCorso(corso);
 	}
 	
 	public List<Corso>getCorsiByStudente(Studente studente){
 		return studenteDAO.getCorsiByStudente(studente);
+	}
+	
+	public boolean iscriviStudenteAlCorso(Studente studente, Corso corso) {
+		return corsoDAO.inscriviStudenteACorso(studente, corso);
 	}
 	
 

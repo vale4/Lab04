@@ -148,11 +148,61 @@ public class FXMLController {
 
     @FXML
     void doIscrivi(ActionEvent event) {
+    	
+    	try {
+    		if(txtMatricola.getText().isEmpty()) {
+    			txtRisultato.appendText("Inserire la matricola\n");
+    			return;
+    		}
+    		
+    		if(boxCorsi.getValue()==null) {
+    			txtRisultato.appendText("Selezionare un corso\n");
+    			return;
+    		}
+    		
+    		int matricola=Integer.parseInt(txtMatricola.getText());
+    		Studente studente=model.getStudenteByMatricola(matricola);
+    		
+    		if(studente==null) {
+    			txtRisultato.appendText("Studente inesistente\n");
+    			return;
+    		}
+    		
+    		txtNome.setText(studente.getNome());
+    		txtCognome.setText(studente.getCognome());
+    		
+    		Corso corso=boxCorsi.getValue();
+    		
+    		if(model.isStudenteIscrittoAlCorso(studente, corso)) {
+    			txtRisultato.appendText("Lo studente è già iscritto al corso\n");
+    			return;
+    		}
+    		
+    		if(model.iscriviStudenteAlCorso(studente, corso)) {
+    			txtRisultato.appendText("Lo studente è stato iscritto al corso con successo!\n");
+    		}
+    		else {
+    			txtRisultato.appendText("Errore nell'iscrizione\n");
+    		}
+    		
+    		
+    		
+    		
+    	}catch(NumberFormatException e) {
+    		txtRisultato.appendText("La matricola deve avere solo caratteri numerici\n");
+    	}catch(RuntimeException e) {
+    		txtRisultato.appendText("Errore di connessione al database\n");
+    	}
 
     }
 
     @FXML
     void doReset(ActionEvent event) {
+    	txtRisultato.clear();
+    	txtMatricola.clear();
+    	txtNome.clear();
+    	txtCognome.clear();
+    	boxCorsi.getSelectionModel().clearSelection();
 
     }
     
